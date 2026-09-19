@@ -33,7 +33,7 @@
 
             const rect = link.getBoundingClientRect()
             badge.style.top = `${rect.top + window.scrollY}px`
-            badge.style.left = `${rect.left + window.screenX}px`
+            badge.style.left = `${rect.left + window.scrollX}px`
 
 
             document.body.appendChild(badge)
@@ -53,6 +53,12 @@
 
         if (bufferTimeout) clearTimeout(bufferTimeout);
         window.removeEventListener("keydown", handleKeyDown, true)
+    }
+
+    function openLink(key) {
+        const {href} = linkMap.get(key)
+        window.open(href,"_blank", "noopener, noreferrer")
+        keyBuffer = ""
     }
 
     function isElementVisible(element) {
@@ -83,17 +89,29 @@
 
         keyBuffer += char
 
+        const hasExactMatch = linkMap.has(keyBuffer)
+        const hasLongerMatch = Array.from(linkMap.keys()).some((key) =>
+            key.length > keyBuffer.length && key.startsWith(keyBuffer)
+        )
+
+        if(!hasExactMatch && !hasLongerMatch){
+            keyBuffer = ""
+            return
+        }
+
+        if(hasExactMatch && !hasLongerMatch){
+            openLink(keyBuffer)
+            return
+        }
+
         if(bufferTimeout)clearTimeout(bufferTimeout)
-            bufferTimeout = setTimeout(() =>{
+        bufferTimeout = setTimeout(() =>{
+            if(linkMap.has(keyBuffer)){
+                openLink(keyBuffer)
+            } else {
                 keyBuffer = ""
-
-            },1000)
-    }
-
-    if(linkMap.has(keyBuffer)){
-        const {href} = linkMap.get(keyBuffer)
-        window.open(href,"_blank", "noopener, noreferrer")
-        keyBuffer = ""
+            }
+        },1000)
     }
 
     chrome.runtime.onMessage.addListener((request) =>{
