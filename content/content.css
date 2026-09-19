@@ -1,0 +1,15 @@
+.link-navigator-badge {
+  position: absolute;
+  z-index: 2147483647 !important; /* Max stack depth */
+  background-color: #ffeb3b !important;
+  color: #000 !important;
+  font-family: monospace, monospace !important;
+  font-size: 11px !important;
+  font-weight: bold !important;
+  padding: 1px 4px !important;
+  border: 1px solid #000 !important;
+  border-radius: 3px !important;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3) !important;
+  pointer-events: none !important; /* Pass-through pointer clicks */
+  line-height: 1 !important;
+}
