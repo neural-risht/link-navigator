@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", async() => {
 
     const{ isEnabled = false} = await chrome.storage.local.get("isEnabled")
 
+    toggleSwitch.checked = isEnabled
     updatedStatusText(isEnabled)
 
     toggleSwitch.addEventListener("change", async ()=>{

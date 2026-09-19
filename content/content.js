@@ -11,7 +11,7 @@
         let key = ""
         let i = index
         while (i >= 0) {
-            key = KEY_ALPHABET[i % KEY_ALPHABET] + key
+            key = KEY_ALPHABET[i % KEY_ALPHABET.length] + key
             i = Math.floor(i / KEY_ALPHABET.length) - 1;
         }
         return key
