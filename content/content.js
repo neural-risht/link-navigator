@@ -131,4 +131,38 @@
         }
     })
 
+    chrome.runtime.onMessage.addListener((request) =>{
+        if(request.action === "TOGGLE_NAVIGATOR"){
+            isEnabled = request.enabled
+            console.log(`[Link Navigator] Toggle status changed to ${isEnabled}`)
+
+            if(isEnabled){
+                activateNavigator()
+            }else{
+                deactivateNavigator()
+            }
+        }
+    })
+
+    chrome.storage.onChanged.addListener((changes, namespace) =>{
+        if(namespace === "local" && changes.isEnabled){
+            isEnabled = changes.isEnabled.newValue
+
+            if(isEnabled){
+                activateNavigator
+            }else{
+                deactivateNavigator
+            }
+        }
+
+    })
+
+    chrome.storage.local.get("isEnabled",({isEnabled:savedState = false}) => {
+        isEnabled = savedState
+
+        if(isEnabled){
+            activateNavigator()
+        }
+    })
+
 })()

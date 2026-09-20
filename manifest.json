@@ -8,9 +8,20 @@
     "storage",
     "scripting"
   ],
+  "background":{
+    "service_worker":"background.js"
+  },
   "action": {
     "default_popup": "popup/popup.html",
     "default_title": "Link Navigator"
+  },
+  "commands":{
+    "toggle-navigator":{
+      "suggested_key":{
+        "default":"Alt+N"
+      },
+      "description":"Toggle Link Navigator ON/OFF"
+    }
   },
   "content_scripts": [
     {
