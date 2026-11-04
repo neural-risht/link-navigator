@@ -12,4 +12,8 @@
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3) !important;
   pointer-events: none !important; /* Pass-through pointer clicks */
   line-height: 1 !important;
+  display: inline-block !important;
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  text-transform: lowercase !important;
 }

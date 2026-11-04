@@ -2,25 +2,24 @@
   "manifest_version": 3,
   "name": "Link Navigator",
   "version": "1.0.0",
-  "description": "Navigate links using numbers and keyboard shortcuts.",
+  "description": "Navigate links using letter sequences and keyboard shortcuts.",
   "permissions": [
     "activeTab",
-    "storage",
-    "scripting"
+    "storage"
   ],
-  "background":{
-    "service_worker":"background.js"
+  "background": {
+    "service_worker": "background.js"
   },
   "action": {
     "default_popup": "popup/popup.html",
     "default_title": "Link Navigator"
   },
-  "commands":{
-    "toggle-navigator":{
-      "suggested_key":{
-        "default":"Alt+N"
+  "commands": {
+    "toggle-navigator": {
+      "suggested_key": {
+        "default": "Alt+N"
       },
-      "description":"Toggle Link Navigator ON/OFF"
+      "description": "Toggle Link Navigator ON/OFF"
     }
   },
   "content_scripts": [
